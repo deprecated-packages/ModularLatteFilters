@@ -11,7 +11,7 @@ class FiltersProviderTest extends PHPUnit_Framework_TestCase
 
 	public function testFilter()
 	{
-		$filters= new MathFilters;
+		$filters = new MathFilters;
 		$filters = $filters->getFilters();
 		$this->assertInternalType('array', $filters);
 
