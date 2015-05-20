@@ -2,10 +2,10 @@
 
 namespace Zenify\ModularLatteFilters\Tests\DI\FiltersProviderSource;;
 
-use Zenify\ModularLatteFilters\DI\FiltersProviderInterface;
+use Zenify\ModularLatteFilters\Contract\DI\LatteFiltersProviderInterface;
 
 
-class MathFilters implements FiltersProviderInterface
+class MathFilters implements LatteFiltersProviderInterface
 {
 
 	/**

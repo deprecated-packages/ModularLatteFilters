@@ -5,10 +5,10 @@
  * Copyright (c) 2015 Tomas Votruba (http://tomasvotruba.cz)
  */
 
-namespace Zenify\ModularLatteFilters\DI;
+namespace Zenify\ModularLatteFilters\Contract\DI;
 
 
-interface FiltersProviderInterface
+interface LatteFiltersProviderInterface
 {
 
 	/**
