@@ -8,27 +8,63 @@
 namespace Zenify\ModularLatteFilters\DI;
 
 use Latte\Engine;
+use Nette\Bridges\ApplicationLatte\ILatteFactory;
 use Nette\DI\CompilerExtension;
+use Nette\DI\ServiceDefinition;
 use Zenify\ModularLatteFilters\Contract\DI\LatteFiltersProviderInterface;
+use Zenify\ModularLatteFilters\Exception\DI\MissingLatteDefinitionException;
 
 
 class ModularLatteFiltersExtension extends CompilerExtension
 {
 
+	/**
+	 * @var string
+	 */
+	const APPLICATION_LATTE_FACTORY_INTERFACE = 'Nette\Bridges\ApplicationLatte\ILatteFactory';
+
+
 	public function beforeCompile()
 	{
-		$builder = $this->getContainerBuilder();
-		$builder->prepareClassList();
+		$containerBuilder = $this->getContainerBuilder();
+		$containerBuilder->prepareClassList();
 
-		$latteEngine = $builder->getDefinition($builder->getByType(Engine::class));
-		foreach ($builder->findByType(LatteFiltersProviderInterface::class) as $latteFilterProviderDefinition) {
-			$latteEngine->addSetup(
+		$latteDefinition = $this->getLatteDefinition();
+		foreach ($containerBuilder->findByType(LatteFiltersProviderInterface::class) as $latteFilterProviderDefinition) {
+			$latteDefinition->addSetup(
 				'foreach (?->getFilters() as $name => $callback) {
 					?->addFilter($name, $callback);
 				}',
 				['@' . $latteFilterProviderDefinition->getClass(), '@self']
 			);
 		}
+	}
+
+
+	/**
+	 * @return ServiceDefinition
+	 */
+	private function getLatteDefinition()
+	{
+		$containerBuilder = $this->getContainerBuilder();
+
+		if ($containerBuilder->getByType(Engine::class)) {
+			$serviceName = $containerBuilder->getByType(Engine::class);
+
+		} elseif ($containerBuilder->getByType(self::APPLICATION_LATTE_FACTORY_INTERFACE)) {
+			$serviceName = $containerBuilder->getByType(self::APPLICATION_LATTE_FACTORY_INTERFACE);
+
+		} else {
+			throw new MissingLatteDefinitionException(
+				sprintf(
+					'No services providing Latte\Engine was found. Register service either of %s or %s type.',
+					Engine::class,
+					ILatteFactory::class
+				)
+			);
+		}
+
+		return $containerBuilder->getDefinition($serviceName);
 	}
 
 }
