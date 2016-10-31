@@ -1,24 +1,32 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zenify\ModularLatteFilters\Tests;
 
 use Nette\Configurator;
 use Nette\DI\Container;
+use Nette\Utils\FileSystem;
 
 
-class ContainerFactory
+final class ContainerFactory
 {
 
-	/**
-	 * @param string $config
-	 * @return Container
-	 */
-	public function createWithConfig($config)
+	public function createWithConfig(string $config) : Container
 	{
 		$configurator = new Configurator;
-		$configurator->setTempDirectory(TEMP_DIR);
+		$configurator->setTempDirectory($this->createAndReturnTempDir());
 		$configurator->addConfig($config);
 		return $configurator->createContainer();
+	}
+
+
+	private function createAndReturnTempDir() : string
+	{
+		$tempDir = sys_get_temp_dir() . '/modular-latte-filters';
+		FileSystem::createDir($tempDir);
+		FileSystem::delete($tempDir);
+		return $tempDir;
 	}
 
 }

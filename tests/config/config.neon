@@ -1,0 +1,6 @@
+services:
+	- Zenify\ModularLatteFilters\Tests\DI\FiltersProviderSource\MathFilters
+	- Latte\Engine
+
+extensions:
+	- Zenify\ModularLatteFilters\DI\ModularLatteFiltersExtension
