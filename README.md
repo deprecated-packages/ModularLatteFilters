@@ -3,21 +3,20 @@
 [![Build Status](https://img.shields.io/travis/Zenify/ModularLatteFilters.svg?style=flat-square)](https://travis-ci.org/Zenify/ModularLatteFilters)
 [![Quality Score](https://img.shields.io/scrutinizer/g/Zenify/ModularLatteFilters.svg?style=flat-square)](https://scrutinizer-ci.com/g/Zenify/ModularLatteFilters)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/Zenify/ModularLatteFilters.svg?style=flat-square)](https://scrutinizer-ci.com/g/Zenify/ModularLatteFilters)
-[![Downloads this Month](https://img.shields.io/packagist/dm/zenify/modular-latte-filters.svg?style=flat-square)](https://packagist.org/packages/zenify/modular-latte-filters)
+[![Downloads this Month](https://img.shields.io/packagist/dt/zenify/modular-latte-filters.svg?style=flat-square)](https://packagist.org/packages/zenify/modular-latte-filters)
 [![Latest stable](https://img.shields.io/packagist/v/zenify/modular-latte-filters.svg?style=flat-square)](https://packagist.org/packages/zenify/modular-latte-filters)
 
 
 ## Install
 
-Via Composer:
-
 ```sh
-$ composer require zenify/modular-latte-filters
+composer require zenify/modular-latte-filters
 ```
 
-Register the extension in `config.neon`:
+Register the extension:
 
 ```yaml
+// app/config/config.neon
 extensions:
 	- Zenify\ModularLatteFilters\DI\ModularLatteFiltersExtension
 ```
@@ -33,13 +32,10 @@ namespace App\Modules\SomeModule\Latte;
 use Zenify\ModularLatteFilters\DI\FiltersProviderInterface;
 
 
-class SomeFilters implements FiltersProviderInterface
+final class SomeFilters implements FiltersProviderInterface
 {
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getFilters()
+	public function getFilters() : array
 	{
 		return [
 			'double' => function ($value) {
@@ -54,6 +50,7 @@ class SomeFilters implements FiltersProviderInterface
 Register it to `config.neon`:
 
 ```yaml
+// app/config/config.neon
 services:
 	- App\Modules\SomeModule\Latte\SomeFilters
 ```
@@ -65,10 +62,16 @@ That's it!
 ## Testing
 
 ```sh
-$ phpunit
+$ vendor/bin/phpunit
 ```
 
 
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Rules are simple:
+
+- new feature needs tests
+- all tests must pass
+- 1 feature per PR
+
+We would be happy to merge your feature then!
