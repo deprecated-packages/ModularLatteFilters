@@ -15,7 +15,7 @@ install:
 script:
   # run tests
   - vendor/bin/phpunit $PHPUNIT_FLAGS
-   # check coding standard (defined in composer.json "scripts" section)
+  # check coding standard (defined in composer.json "scripts" section)
   - if [[ "$CHECK_CS" != "" ]]; then composer check-cs; fi
 
 after_script:
