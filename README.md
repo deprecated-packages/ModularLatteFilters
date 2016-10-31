@@ -62,6 +62,7 @@ That's it!
 ## Testing
 
 ```sh
+composer check-cs
 vendor/bin/phpunit
 ```
 
