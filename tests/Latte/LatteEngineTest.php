@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zenify\ModularLatteFilters\Tests\Latte;
 
 use Latte\Engine;
 use Nette\Bridges\ApplicationLatte\ILatteFactory;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\ModularLatteFilters\Tests\ContainerFactory;
 
 
-class LatteEngineTest extends PHPUnit_Framework_TestCase
+final class LatteEngineTest extends TestCase
 {
 
 	public function testInvokeFilterInLatte()
