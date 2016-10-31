@@ -24,8 +24,8 @@ final class ContainerFactory
 	private function createAndReturnTempDir() : string
 	{
 		$tempDir = sys_get_temp_dir() . '/modular-latte-filters';
-		FileSystem::createDir($tempDir);
 		FileSystem::delete($tempDir);
+		FileSystem::createDir($tempDir);
 		return $tempDir;
 	}
 
