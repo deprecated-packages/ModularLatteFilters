@@ -16,7 +16,7 @@ composer require zenify/modular-latte-filters
 Register the extension:
 
 ```yaml
-// app/config/config.neon
+# app/config/config.neon
 extensions:
 	- Zenify\ModularLatteFilters\DI\ModularLatteFiltersExtension
 ```
@@ -50,7 +50,7 @@ final class SomeFilters implements FiltersProviderInterface
 Register it to `config.neon`:
 
 ```yaml
-// app/config/config.neon
+# app/config/config.neon
 services:
 	- App\Modules\SomeModule\Latte\SomeFilters
 ```
@@ -62,7 +62,7 @@ That's it!
 ## Testing
 
 ```sh
-$ vendor/bin/phpunit
+vendor/bin/phpunit
 ```
 
 

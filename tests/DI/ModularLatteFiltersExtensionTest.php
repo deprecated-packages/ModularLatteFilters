@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Zenify\ModularLatteFilters\Tests\DI;
 
@@ -46,6 +46,9 @@ final class ModularLatteFiltersExtensionTest extends TestCase
 	}
 
 
+	/**
+	 * @return ModularLatteFiltersExtension
+	 */
 	private function getExtension() : ModularLatteFiltersExtension
 	{
 		$extension = new ModularLatteFiltersExtension;

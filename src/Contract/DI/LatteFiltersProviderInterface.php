@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 /*
  * This file is part of Zenify.
@@ -16,6 +16,6 @@ interface LatteFiltersProviderInterface
 	/**
 	 * @return callable[]
 	 */
-	public function getFilters() : array;
+	function getFilters();
 
 }

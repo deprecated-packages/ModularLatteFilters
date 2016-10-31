@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 /*
  * This file is part of Zenify.
@@ -43,6 +43,9 @@ final class ModularLatteFiltersExtension extends CompilerExtension
 	}
 
 
+	/**
+	 * @return ServiceDefinition
+	 */
 	private function getLatteDefinition() : ServiceDefinition
 	{
 		$containerBuilder = $this->getContainerBuilder();
