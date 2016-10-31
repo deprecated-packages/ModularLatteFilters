@@ -1,18 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zenify\ModularLatteFilters\Tests\DI;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\ModularLatteFilters\Tests\DI\FiltersProviderSource\MathFilters;
 
 
-class FiltersProviderTest extends PHPUnit_Framework_TestCase
+final class FiltersProviderTest extends TestCase
 {
 
 	public function testFilter()
 	{
-		$filters = new MathFilters;
-		$filters = $filters->getFilters();
+		$filters = (new MathFilters)->getFilters();
 		$this->assertInternalType('array', $filters);
 
 		$this->assertSame(10, $filters['double'](5));

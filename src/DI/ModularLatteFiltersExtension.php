@@ -1,6 +1,8 @@
 <?php
 
-/**
+declare(strict_types=1);
+
+/*
  * This file is part of Zenify.
  * Copyright (c) 2015 Tomas Votruba (http://tomasvotruba.cz)
  */
@@ -15,13 +17,13 @@ use Zenify\ModularLatteFilters\Contract\DI\LatteFiltersProviderInterface;
 use Zenify\ModularLatteFilters\Exception\DI\MissingLatteDefinitionException;
 
 
-class ModularLatteFiltersExtension extends CompilerExtension
+final class ModularLatteFiltersExtension extends CompilerExtension
 {
 
 	/**
 	 * @var string
 	 */
-	const APPLICATION_LATTE_FACTORY_INTERFACE = 'Nette\Bridges\ApplicationLatte\ILatteFactory';
+	const APPLICATION_LATTE_FACTORY_INTERFACE = ILatteFactory::class;
 
 
 	public function beforeCompile()
@@ -41,10 +43,7 @@ class ModularLatteFiltersExtension extends CompilerExtension
 	}
 
 
-	/**
-	 * @return ServiceDefinition
-	 */
-	private function getLatteDefinition()
+	private function getLatteDefinition() : ServiceDefinition
 	{
 		$containerBuilder = $this->getContainerBuilder();
 

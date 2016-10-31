@@ -1,6 +1,8 @@
 <?php
 
-/**
+declare(strict_types=1);
+
+/*
  * This file is part of Zenify.
  * Copyright (c) 2015 Tomas Votruba (http://tomasvotruba.cz)
  */
@@ -14,6 +16,6 @@ interface LatteFiltersProviderInterface
 	/**
 	 * @return callable[]
 	 */
-	function getFilters();
+	public function getFilters() : array;
 
 }

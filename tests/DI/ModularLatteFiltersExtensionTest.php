@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zenify\ModularLatteFilters\Tests\DI;
 
 use Latte\Engine;
 use Nette\DI\Compiler;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zenify\ModularLatteFilters\DI\ModularLatteFiltersExtension;
-use Zenify\ModularLatteFilters\Exception\DI\MissingLatteDefinitionException;
 use Zenify\ModularLatteFilters\Tests\DI\FiltersProviderSource\MathFilters;
 
 
-class ModularLatteFiltersExtensionTest extends PHPUnit_Framework_TestCase
+final class ModularLatteFiltersExtensionTest extends TestCase
 {
 
 	public function testLoadTaggedServices()
@@ -33,20 +34,19 @@ class ModularLatteFiltersExtensionTest extends PHPUnit_Framework_TestCase
 	}
 
 
+	/**
+	 * @expectedException \Zenify\ModularLatteFilters\Exception\DI\MissingLatteDefinitionException
+	 */
 	public function testNoLatteDefinition()
 	{
 		$extension = $this->getExtension();
 		$extension->loadConfiguration();
 
-		$this->setExpectedException(MissingLatteDefinitionException::class);
 		$extension->beforeCompile();
 	}
 
 
-	/**
-	 * @return ModularLatteFiltersExtension
-	 */
-	private function getExtension()
+	private function getExtension() : ModularLatteFiltersExtension
 	{
 		$extension = new ModularLatteFiltersExtension;
 		$extension->setCompiler(new Compiler, 'compiler');
