@@ -46,9 +46,6 @@ final class ModularLatteFiltersExtensionTest extends TestCase
 	}
 
 
-	/**
-	 * @return ModularLatteFiltersExtension
-	 */
 	private function getExtension() : ModularLatteFiltersExtension
 	{
 		$extension = new ModularLatteFiltersExtension;

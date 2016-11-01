@@ -13,7 +13,7 @@ final class MathFilters implements LatteFiltersProviderInterface
 	/**
 	 * @return callable[]
 	 */
-	public function getFilters()
+	public function getFilters() : array
 	{
 		return [
 			'double' => function (int $value) {

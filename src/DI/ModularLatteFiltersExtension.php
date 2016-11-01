@@ -43,9 +43,6 @@ final class ModularLatteFiltersExtension extends CompilerExtension
 	}
 
 
-	/**
-	 * @return ServiceDefinition
-	 */
 	private function getLatteDefinition() : ServiceDefinition
 	{
 		$containerBuilder = $this->getContainerBuilder();
