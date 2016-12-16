@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Zenify\ModularLatteFilters\Tests\PHPUnit;
 
+use Nette\Database\Context;
 use Nette\DI\Container;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
